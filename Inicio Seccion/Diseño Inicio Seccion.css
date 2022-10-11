@@ -1,0 +1,51 @@
+#login-box { 
+    border: 1px solid blue;
+    width: 30%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 15%;
+    background-color: orange;
+    padding: 20px 50px;
+   
+    
+}
+#login-box h1 {
+    color: white;
+}
+
+#login-box .form .item input {
+    width: 200 px;
+    border: 0;
+    border-bottom: 5px solid white;
+    font-size: 18px;
+    background: #ffffff00;
+    color: white;
+    padding: 5px 10px;
+}
+
+
+
+#login-box .form .item i {
+    color: white;
+    font-size: 18px;
+}
+
+#login-box button {
+    border: 0;
+    width: 150px;
+    height: 30px;
+    margin-top: 18px;
+    font-size: 18px;
+    color: white;
+    border-radius: 25px;
+    background-color: black;
+
+}
+
+body { 
+   
+    background: url("Logo.jpg") center top 50px ;
+    background-size: 100px;
+    background-color: rgba(255, 68, 0, 0.842);
+    background-repeat: no-repeat;
+}
