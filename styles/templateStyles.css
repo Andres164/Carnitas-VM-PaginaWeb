@@ -1,0 +1,39 @@
+#mainDiv {
+    background-color: aliceblue;
+    margin-bottom: 50px;
+}
+#divDataGrid {
+    background-color: aquamarine;
+    padding: 2rem;
+}
+#divBotones {
+    background-color: blanchedalmond;
+    width: 15%;
+    height: max-content;
+    padding: 2rem;
+}
+a {
+    margin: 8px;
+    size: 90%;
+}
+.form-control-dark {
+    border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+    border-color: #fff;
+    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+}
+
+.text-small {
+    font-size: 85%;
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+}
