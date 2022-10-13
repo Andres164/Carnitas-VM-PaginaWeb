@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Ventas a domicilio</title>
+    <style>
+        #divGastos {
+            background-color: aliceblue;
+            height: 100%;
+        }
+        #divDataGrid {
+            background-color: aquamarine;
+
+        }
+        #divBotones {
+            background-color: blanchedalmond;
+            
+            width: 15%;
+            height: max-content;
+            padding: 2rem;
+        }
+        a {
+            margin: 8px;
+            size: 90%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ventas a domicilio</h1>
+    <h2>Productos<h2>
+    <div class="container-fluid" id="divGastos">
+        <div class="row">
+            <div class="col" id="divDataGrid">
+
+            </div>
+            <div class="col" id="divDataGrid">
+
+            </div>
+            <div class="col" id="divBotones">
+                <a type="button" class="w-100 btn btn-secondary">Agregar</a><br>
+                <a type="button" class="w-100 btn btn-secondary">Quitar</a><br>
+                <a type="button" class="w-100 btn btn-secondary">Cancelar</a><br>
+                <a type="button" class="w-100 btn btn-secondary">Guardar</a><br>
+            </div>
+
+            <div class="form-group">
+                <label for="ClienteInfo">Cliente:</label>
+                <textarea class="form-control" id="ClienteTextbox" rows="1"></textarea>
+                <label for="DescripcIoninfo">Descripcion:</label>
+                <textarea class="form-control" id="DescripcionTextbox" rows="3"></textarea>
+                <label for="ReferenciaInfo">Referencia:</label>
+                <textarea class="form-control" id="ReferenciaTextbox" rows="2"></textarea>
+                <label for="TelefonoInfo">Telefono:</label>
+                <textarea class="form-control" id="Telefonotextbox" rows="1"></textarea>
+              </div>
+            
+        </div>
+    </div>
+
+
+    <div>
+    </div>
+</body>
+</html>
