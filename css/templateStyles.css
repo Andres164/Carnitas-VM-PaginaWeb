@@ -1,16 +1,19 @@
 #mainDiv {
     background-color: aliceblue;
     margin-bottom: 50px;
+    padding: 3rem;
 }
 #divDataGrid {
     background-color: aquamarine;
     padding: 2rem;
+    margin-bottom: 4rem;
 }
 #divBotones {
     background-color: blanchedalmond;
     width: 15%;
     height: max-content;
     padding: 2rem;
+    margin-bottom: 4rem;
 }
 a {
     margin: 8px;
@@ -36,4 +39,6 @@ a {
     background-color: rgba(0, 0, 0, .1);
     border: solid rgba(0, 0, 0, .15);
     border-width: 1px 0;
+    padding-left: 15px;
 }
+

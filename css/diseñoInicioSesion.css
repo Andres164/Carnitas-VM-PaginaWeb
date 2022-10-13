@@ -43,8 +43,7 @@
 }
 
 body { 
-   
-    background: url("Logo.jpg") center top 50px ;
+    background: url("../IMGs/LogoCarnitas.jpg") center top 50px ;
     background-size: 100px;
     background-color: rgba(255, 68, 0, 0.842);
     background-repeat: no-repeat;
