@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Deudas</title>
+    <link rel="stylesheet" type="text/css" href="../../css/templateStyles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="../../Index.html" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="../ventas/Ventas.html" class="nav-link">Ventas</a></li>
+        <li class="nav-item"><a href="../gastos/gastos.html" class="nav-link">Gastos</a></li>
+        <li class="nav-item"><a href="../prestamos/prestamos.html" class="nav-link">Prestamos</a></li>
+        <li class="nav-item"><a href="../productos/productos.html" class="nav-link">Productos</a></li>
+        <li class="nav-item"><a href="../invetario/invetario.html" class="nav-link">Invetario</a></li>
+        <li class="nav-item"><a href="../proveedores/proveedores.html" class="nav-link">Proveedores</a></li>
+        <li class="nav-item"><a href="../insumos/insumos.html" class="nav-link">Insumos</a></li>
+        <li class="nav-item"><a href="../usuarios/usuarios.html" class="nav-link">Usuarios</a></li>
+      </ul>
+    </header>
+  </div>
+
+  <div class="b-example-divider"><h1 style="margin-left: 15px;">Deudas</h1></div>
+
+    <div class="container-fluid " id="mainDiv">
+        <div class="row d-flex justify-content-center" >
+            <div class="col-8" id="divDataGrid">
+                <div class="col" style="background-color: grey;">
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+            <div class="col-4" id="divBotones">
+                <a style="margin-left: 0;" href="registrarDeuda.html" type="button" class="w-100 btn btn-secondary">Registrar deuda</a><br>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="w-100 btn btn-secondary">Pagar deuda</button><br>
+                <a style="margin-left: 0;" href="modificarDeuda.html" type="button" class="w-100 btn btn-secondary">Modificar registro</a><br>
+                <a style="margin-left: 0;" type="button" class="w-100 btn btn-secondary">Eliminar registro</a><br><br>
+                <a style="margin-left: 0;" type="button" class="w-100 btn btn-secondary">refrescar tabla</a><br>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Deudas activas</option>
+                  <option value="1">Deudas pagadas</option>
+                  <option value="2">Todas las deudas</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- modal (popUp)-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pagar deuda</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5>Importe</h5>
+            <input type="number" step="any" name="importe"><br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
