@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/templateStyles.css">
 </head>
 <body>
-
+  <!-- Nav bar -->
   <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
@@ -27,14 +27,42 @@
   </div>
 
   <div class="b-example-divider"><h1 style="margin-left: 15px;">Productos</h1></div>
-
-    <div class="container-fluid " id="mainDiv">
+  <div class="container-fluid " id="mainDiv">
         <div class="row d-flex justify-content-center" >
+            <!-- DataGrid -->
             <div class="col-8" id="divDataGrid">
-                <div class="col" style="background-color: grey;">
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                <div class="col">
+                  <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col"> nombre </th>
+                        <th scope="col"> Unidad de medida </th>
+                        <th scope="col"> Precio de venta </th>
+                        <th scope="col"> Costo de produccion </th>
+                        <th scope="col"> Categoria </th>
+                        <th scope="col"> Stock </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      include '../../interfazDB/productos/read.php';
+                      $datos = read();
+                      while($registro = mysqli_fetch_array($datos)) {
+                        echo '<tr>';
+                          echo '<td>' . $registro['nombre']  . '</td>';
+                          echo '<td>' . $registro['unidadDeMedida']  . '</td>';
+                          echo '<td>' . $registro['precioDeVenta']  . '</td>';
+                          echo '<td>' . $registro['costoDeProduccion']  . '</td>';
+                          echo '<td>' . $registro['categoria']  . '</td>';
+                          echo '<td>' . $registro['stock']  . '</td>';
+                        echo '</tr>';
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
             </div>
+            <!-- Botones -->
             <div class="col-4" id="divBotones">
                 <a type="button" href="registrarProductos.html" class="w-100 btn btn-secondary">Registrar Producto</a><br>
                 <a type="button" href="#" class="w-100 btn btn-secondary">Eliminar registro</a><br>
