@@ -14,10 +14,10 @@
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="../../Index.html" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="../ventas/Ventas.html" class="nav-link">Ventas</a></li>
+        <li class="nav-item"><a href="../ventas/Ventas.php" class="nav-link">Ventas</a></li>
         <li class="nav-item"><a href="../gastos/gastos.html" class="nav-link">Gastos</a></li>
         <li class="nav-item"><a href="../prestamos/prestamos.html" class="nav-link">Prestamos</a></li>
-        <li class="nav-item"><a href="../productos/productos.html" class="nav-link">Productos</a></li>
+        <li class="nav-item"><a href="../productos/productos.php" class="nav-link">Productos</a></li>
         <li class="nav-item"><a href="../invetario/invetario.html" class="nav-link">Invetario</a></li>
         <li class="nav-item"><a href="../proveedores/proveedores.html" class="nav-link">Proveedores</a></li>
         <li class="nav-item"><a href="../insumos/insumos.html" class="nav-link">Insumos</a></li>
@@ -30,12 +30,46 @@
 
     <div class="container-fluid " id="mainDiv">
         <div class="row d-flex justify-content-center" >
-            <div class="col-8" id="divDataGrid">
-                <div class="col" style="background-color: grey;">
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
+          <div class="col-8" id="divDataGrid">
+            <div class="col">
+                  <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Id </th>
+                        <th scope="col"> nombre </th>
+                        <th scope="col"> Unidad de medida </th>
+                        <th scope="col"> Precio de venta </th>
+                        <th scope="col"> Costo de produccion </th>
+                        <th scope="col"> Categoria </th>
+                        <th scope="col"> Stock </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      include '../../interfazDB/productos/read.php';
+                      $datos = read();
+                      while($registro = mysqli_fetch_array($datos)) {
+                        echo '<tr>';
+                          echo '<td>' . $registro['productoID'] . '</td>';
+                          echo '<td>' . $registro['nombre']  . '</td>';
+                          echo '<td>' . $registro['unidadDeMedida']  . '</td>';
+                          echo '<td>' . $registro['precioDeVenta']  . '</td>';
+                          echo '<td>' . $registro['costoDeProduccion']  . '</td>';
+                          echo '<td>' . $registro['categoria']  . '</td>';
+                          echo '<td>' . $registro['stock']  . '</td>';
+                        echo '</tr>';
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
+                
+              </table>
             </div>
+        </div>
             <div class="form-group">
+                <label for="ClienteInfo">Id del producto:</label>
+                <textarea class="form-control" id="CantidadTextbox" rows="1"></textarea>
                 <label for="ClienteInfo">Cantidad en KG:</label>
                 <textarea class="form-control" id="CantidadTextbox" rows="1"></textarea>
             </div>
