@@ -1,3 +1,17 @@
+<?php
+session_start();
+if(isset( $_POST['guardar'] ) && isset( $_SESSION['productosVenta'] ) ) {
+    
+}
+else if(isset( $_POST['cancelar'] ) && isset( $_SESSION['productosVenta'] )) {
+    require_once '../../interfazDB/productos/read.php';
+    $result = mysqli_fetch_array( readID($productoVenta['productoID']) );
+    $stockActual = $result['stock'];
+    $stockCorregido = $stockActual + $productoVenta['cantidad'];
+    updateStock($productoVenta['productoID'], $stockCorregido);
+}
+$_SESSION['productosVenta'] = array();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,11 +68,11 @@
 
             </div>
             <div class="col" id="divBotones">
-                <a type="button" href="VentasParaLLevar.php" class="w-100 btn btn-secondary">Venta para llevar</a><br>
-                <a type="button" href="Ventas a domicilio.php" class="w-100 btn btn-secondary">Venta para domicilio</a><br>
-                <a type="button" href="venta en mesa.php" class="w-100 btn btn-secondary">Venta en mesa </a><br>
+                <a type="button" href="ventaParaLlevar.php" class="w-100 btn btn-secondary">Venta para llevar</a><br>
+                <a type="button" href="ventaEnDomicilio.php" class="w-100 btn btn-secondary">Venta para domicilio</a><br>
+                <a type="button" href="ventaEnMesa.php" class="w-100 btn btn-secondary">Venta en mesa </a><br>
                 <a type="button" class="w-100 btn btn-secondary">Eliminar registro</a><br>
-                <a type="button" href="modificarventas.html" class="w-100 btn btn-secondary">Modificar registro</a><br>
+                <a type="button" href="modificarVenta.html" class="w-100 btn btn-secondary">Modificar registro</a><br>
                 <a type="button" class="w-100 btn btn-secondary">Refrescar tabla</a><br>
                 <a type="button" class="w-100 btn btn-secondary">Ver resumen</a><br>
             </div>

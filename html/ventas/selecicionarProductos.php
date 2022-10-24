@@ -14,7 +14,7 @@
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="../../Index.html" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="../ventas/Ventas.php" class="nav-link">Ventas</a></li>
+        <li class="nav-item"><a href="../ventas/ventas.html" class="nav-link">Ventas</a></li>
         <li class="nav-item"><a href="../gastos/gastos.html" class="nav-link">Gastos</a></li>
         <li class="nav-item"><a href="../prestamos/prestamos.html" class="nav-link">Prestamos</a></li>
         <li class="nav-item"><a href="../productos/productos.php" class="nav-link">Productos</a></li>
@@ -45,7 +45,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
+                      <?php 
                       include '../../interfazDB/productos/read.php';
                       $datos = read();
                       while($registro = mysqli_fetch_array($datos)) {
@@ -66,15 +66,16 @@
                 
               </table>
             </div>
-        </div>
+        <form action="agregarProducto/agregarProducto.php" method="post">
             <div class="form-group">
                 <label for="ClienteInfo">Id del producto:</label>
-                <textarea class="form-control" id="CantidadTextbox" rows="1"></textarea>
+                <input class="form-control" type="number" name="productoID" id="CantidadTextbox"></input>
                 <label for="ClienteInfo">Cantidad en KG:</label>
-                <textarea class="form-control" id="CantidadTextbox" rows="1"></textarea>
+                <input class="form-control" type="number" name="cantidad" id="CantidadTextbox"></input>
             </div>
-            <div class="col-4" id="divBotones">
-                <a type="button" class="w-100 btn btn-secondary">Agregar</a><br>
+            <div style="margin-top: 2rem; width: 50%;">
+              <button type="submit" class="w-100 btn btn-secondary">Agregar</button>
+              <a type="button" class="w-100 btn btn-primary" href="ventaParaLlevar.php" style="margin-left: 0px; margin-top: 1rem;">Terminar</a>
             </div>
         </div>
     </div>
