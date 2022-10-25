@@ -1,16 +1,21 @@
 <?php
 session_start();
 if(isset( $_POST['guardar'] ) && isset( $_SESSION['productosVenta'] ) ) {
-    
+    require_once '../../interfazDB/ventas/create.php';
+    $productoVenta = $_SESSION['productosVenta'];
+    if(createVenta($productoVenta[''])) 
 }
-else if(isset( $_POST['cancelar'] ) && isset( $_SESSION['productosVenta'] )) {
+else if(isset( $_SESSION['productosVenta'] )) {
     require_once '../../interfazDB/productos/read.php';
-    $result = mysqli_fetch_array( readID($productoVenta['productoID']) );
-    $stockActual = $result['stock'];
-    $stockCorregido = $stockActual + $productoVenta['cantidad'];
-    updateStock($productoVenta['productoID'], $stockCorregido);
+    require_once '../../interfazDB/productos/update.php';
+    foreach($_SESSION['productosVenta'] as $productoVenta) {
+        $result = mysqli_fetch_array( readID($productoVenta['productoID']) );
+        $stockActual = $result['stock'];
+        $stockCorregido = $stockActual + $productoVenta['cantidad'];
+        updateStock($productoVenta['productoID'], $stockCorregido);
+    }
+    $_SESSION['productosVenta'] = array();
 }
-$_SESSION['productosVenta'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">

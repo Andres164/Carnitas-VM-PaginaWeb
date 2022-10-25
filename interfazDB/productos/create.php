@@ -1,7 +1,9 @@
 <?php
 
 function create($valorCampos) {
-    include_once '../coneccion.php';
+    $base_dir = realpath(dirname(__FILE__) . '/..');
+    require_once  $base_dir . '/coneccion.php';
+    $coneccion = coneccion();
     
     $query = 'INSERT INTO productos (nombre, unidadDeMedida, precioDeVenta, costoDeProduccion, categoria, stock)
               VALUES(?, ?, ?, ?, ?, ?)';
