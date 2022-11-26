@@ -50,7 +50,7 @@
                       $datos = read();
                       while($registro = mysqli_fetch_array($datos)) {
                         echo '<tr>';
-                          echo '<td>' . $registro['productoID'] . '</td>';
+                          echo '<td>' . $registro['folioDeVenta'] . '</td>';
                           echo '<td>' . $registro['nombre']  . '</td>';
                           echo '<td>' . $registro['unidadDeMedida']  . '</td>';
                           echo '<td>' . $registro['precioDeVenta']  . '</td>';

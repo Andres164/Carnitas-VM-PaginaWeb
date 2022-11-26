@@ -2,8 +2,8 @@
 session_start();
 if(isset( $_POST['guardar'] ) && isset( $_SESSION['productosVenta'] ) ) {
     require_once '../../interfazDB/ventas/create.php';
-    $productoVenta = $_SESSION['productosVenta'];
-    if(createVenta($productoVenta[''])) 
+    createVenta($_SESSION['productosVenta'], 1, 1);
+    echo '<h1><a href="../../ticket/ticket.php">Generar ticket</a></h1>';
 }
 else if(isset( $_SESSION['productosVenta'] )) {
     require_once '../../interfazDB/productos/read.php';
@@ -14,8 +14,8 @@ else if(isset( $_SESSION['productosVenta'] )) {
         $stockCorregido = $stockActual + $productoVenta['cantidad'];
         updateStock($productoVenta['productoID'], $stockCorregido);
     }
-    $_SESSION['productosVenta'] = array();
 }
+$_SESSION['productosVenta'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">

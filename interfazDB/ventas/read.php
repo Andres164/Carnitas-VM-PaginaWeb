@@ -17,9 +17,11 @@ function readUltimoRegistro() {
     $base_dir = realpath(dirname(__FILE__) . '/..');
     require_once  $base_dir . '/coneccion.php';
     $coneccion = coneccion();
-
-    $ultimoID = mysqli_query($coneccion, 'SELECT last_insert_id()');
-    $resultado = mysqli_query($coneccion, 'SELECT * FROM ventas WHERE folioVenta = ' . $ultimoID);
+    
+    $ultimoID = mysqli_query($coneccion, 'SELECT * FROM ventas ORDER BY folioDeVenta DESC LIMIT 1');
+    $ultimoID = mysqli_fetch_array($ultimoID)['folioDeVenta'];
+    $query = 'SELECT * FROM ventas WHERE folioDeVenta = ' . $ultimoID;
+    $resultado = mysqli_query($coneccion, $query);
     $numeroRegistros = mysqli_num_rows($resultado);
     mysqli_close($coneccion);
 
