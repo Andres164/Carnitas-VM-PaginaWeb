@@ -14,37 +14,25 @@
     $pdf->Cell(5,$textypos,'__________________________________________');
     $textypos+=6;
     $pdf->setX(2);
-    $pdf->Cell(5,$textypos,'CANT.  ARTICULO       PRECIO               TOTAL');
+    $pdf->Cell(5,$textypos,'CANT(Kg).            ARTICULO                   TOTAL');
 
-    $total =0;
+    require realpath(dirname(__FILE__) . '/../interfazDB/ventas/read.php');
+    require realpath(dirname(__FILE__) . '/../interfazDB/productos/read.php');
+    require realpath(dirname(__FILE__) . '/../interfazDB/productos_venta/read.php');
+    $venta = mysqli_fetch_array(readUltimoRegistro());
+    $productos_venta = readProductos_venta($venta['folioDeVenta']);
+    $total = $venta['totalDeVenta'];
     $off = $textypos+6;
-    $carnitas = array(
-        "q"=>1,
-        "name"=>"carnitas",
-        "price"=>350
-    );
-    $chicharron = array(
-        "q"=>2,
-        "name"=>"chicharron",
-        "price"=>250
-    );
-    $botana = array(
-        "q"=>3,
-        "name"=>"botana",
-        "price"=>350
-    );
-    $productos = array($carnitas, $chicharron, $botana);
-    foreach($productos as $pro){
+    
+    while($productoVenta = mysqli_fetch_array($productos_venta)){
+    $producto = mysqli_fetch_array( readID($productoVenta['productoID']) );
     $pdf->setX(2);
-    $pdf->Cell(5,$off,$pro["q"]);
-    $pdf->setX(6);
-    $pdf->Cell(35,$off,  strtoupper(substr($pro["name"], 0,12)) );
-    $pdf->setX(20);
-    $pdf->Cell(11,$off,  "$".number_format($pro["price"],2,".",",") ,0,0,"R");
+    $pdf->Cell(5,$off,$productoVenta["cantidadProducto"]);
+    $pdf->setX(16);
+    $pdf->Cell(35,$off,  strtoupper(substr($producto["nombre"], 0,12)) );
     $pdf->setX(32);
-    $pdf->Cell(11,$off,  "$ ".number_format($pro["q"]*$pro["price"],2,".",",") ,0,0,"R");
+    $pdf->Cell(11,$off,  "$ ".number_format($productoVenta["cantidadProducto"]*$producto["precioDeVenta"],2,".",",") ,0,0,"R");
 
-    $total += $pro["q"]*$pro["price"];
     $off+=6;
     }
     $textypos=$off+6;
@@ -57,7 +45,7 @@
     $pdf->setX(2);
     $pdf->Cell(5,$textypos+6,'GRACIAS POR TU COMPRA ');
 
-    $pdf->output('D', 'ticket.pdf');
+    $pdf->output();
 
 
 ?>

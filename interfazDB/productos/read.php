@@ -5,13 +5,8 @@ function read() {
     $coneccion = coneccion();
 
     $resultado = mysqli_query($coneccion, 'SELECT * FROM productos');
-    $numeroRegistros = mysqli_num_rows($resultado);
     mysqli_close($coneccion);
-
-    if($numeroRegistros > 0)
-        return $resultado;
-    else
-        return false;
+    return $resultado;
 }
 
 function readID($ID) {

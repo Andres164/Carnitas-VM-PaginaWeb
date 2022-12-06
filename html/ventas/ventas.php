@@ -2,8 +2,8 @@
 session_start();
 if(isset( $_POST['guardar'] ) && isset( $_SESSION['productosVenta'] ) ) {
     require_once '../../interfazDB/ventas/create.php';
-    createVenta($_SESSION['productosVenta'], 1, 1);
-    echo '<h1><a href="../../ticket/ticket.php">Generar ticket</a></h1>';
+    createVenta($_SESSION['productosVenta'], 1, $_SESSION['usuario']);
+    header('Location: ../../ticket/ticket.php');
 }
 else if(isset( $_SESSION['productosVenta'] )) {
     require_once '../../interfazDB/productos/read.php';
@@ -48,38 +48,46 @@ $_SESSION['productosVenta'] = array();
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="d-flex justify-content-center py-3">
-          <ul class="nav nav-pills">
-        <li class="nav-item"><a href="../../Index.html" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="../gastos/gastos.html" class="nav-link">Gastos</a></li>
-        <li class="nav-item"><a href="../deudas/deudas.html" class="nav-link">Deudas</a></li>
-        <li class="nav-item"><a href="../prestamos/prestamos.html" class="nav-link">Prestamos</a></li>
-        <li class="nav-item"><a href="../productos/productos.php" class="nav-link">Productos</a></li>
-        <li class="nav-item"><a href="../proveedores/proveedores.html" class="nav-link">Proveedores</a></li>
-        <li class="nav-item"><a href="../insumos/insumos.html" class="nav-link">Insumos</a></li>
-        <li class="nav-item"><a href="../invetario/invetario.html" class="nav-link">Invetario</a></li>
-        <li class="nav-item"><a href="../usuarios/usuarios.html" class="nav-link">Usuarios</a></li>
-          </ul>
-        </header>
-      </div>
-      <input type = "datetime-local" id="meeting-time">
+    <?php require '../navBar.php'; ?>
+    <input type = "datetime-local" id="meeting-time">
     <div class="container-fluid" id="divGastos">
         <div class="row">
             <div class="col" id="divDataGrid">
+                <div class="col">
+                  <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Folio de venta </th>
+                        <th scope="col"> Fecha de venta </th>
+                        <th scope="col"> Cajero </th>
+                        <th scope="col"> Total de venta </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      require_once '../../interfazDB/ventas/read.php';
+                      require_once '../../interfazDB/usuarios/read.php';
+                      $datos = readVentas();
 
+                      while($registro = mysqli_fetch_array($datos)) {
+                        $usuario = mysqli_fetch_array( readIdUsuario($registro['usuarioID']) );
+                        echo '<tr>';
+                          echo '<td>' . $registro['folioDeVenta']  . '</td>';
+                          echo '<td>' . $registro['fechaDeVenta']  . '</td>';
+                          echo '<td>' . $usuario['nombrePersona']  . '</td>';
+                          echo '<td>' . $registro['totalDeVenta']  . '</td>';
+                        echo '</tr>';
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
             </div>
             <div class="col" id="divDataGrid">
 
             </div>
             <div class="col" id="divBotones">
-                <a type="button" href="ventaParaLlevar.php" class="w-100 btn btn-secondary">Venta para llevar</a><br>
-                <a type="button" href="ventaEnDomicilio.php" class="w-100 btn btn-secondary">Venta para domicilio</a><br>
-                <a type="button" href="ventaEnMesa.php" class="w-100 btn btn-secondary">Venta en mesa </a><br>
-                <a type="button" class="w-100 btn btn-secondary">Eliminar registro</a><br>
-                <a type="button" href="modificarVenta.html" class="w-100 btn btn-secondary">Modificar registro</a><br>
-                <a type="button" class="w-100 btn btn-secondary">Refrescar tabla</a><br>
-                <a type="button" class="w-100 btn btn-secondary">Ver resumen</a><br>
+                <a type="button" href="ventaParaLlevar.php" class="w-100 btn btn-secondary">Realizar venta</a><br>
             </div>
         </div>
     </div>

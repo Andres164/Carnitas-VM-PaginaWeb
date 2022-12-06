@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  if(empty($_SESSION['usuario']))
+    header('location: inicioDeSesion.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,20 +30,14 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav nav-fill w-100">
               <a class="nav-link" href="html/ventas/ventas.php">Ventas</a>
-              <a class="nav-link" href="html/gastos/gastos.html">Gastos</a>
-              <a class="nav-link" href="html/deudas/deudas.html">Deudas</a>
-              <a class="nav-link" href="html/prestamos/prestamos.html">Prestamos</a>
-              <a class="nav-link" href="html/productos/productos.html">Productos</a>
-              <a class="nav-link" href="html/proveedores/proveedores.html">Proveedores</a>
-              <a class="nav-link" href="html/insumos/insumos.html">Insumos</a>
-              <a class="nav-link" href="html/invetario/invetario.html">Invetario</a>
-              <a class="nav-link" href="html/usuarios/usuarios.html">Usuarios</a>
+              <a class="nav-link" href="html/productos/productos.php">Productos</a>
+              <a class="nav-link" href="html/insumos/insumos.php">Insumos</a>
+              <a class="nav-link" href="html/invetario/invetario.php">Invetario</a>
+              <a class="nav-link" href="html/usuarios/usuarios.php">Usuarios</a>
             </div>
           </div>
         </div>
       </nav>
-    
-
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 

@@ -10,21 +10,7 @@
 </head>
 <body>
   <!-- Nav bar -->
-  <div class="container">
-    <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="../../Index.html" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="../ventas/Ventas.html" class="nav-link">Ventas</a></li>
-        <li class="nav-item"><a href="../gastos/gastos.html" class="nav-link">Gastos</a></li>
-        <li class="nav-item"><a href="../deudas/deudas.html" class="nav-link">Deudas</a></li>
-        <li class="nav-item"><a href="../prestamos/prestamos.html" class="nav-link">Prestamos</a></li>
-        <li class="nav-item"><a href="../proveedores/proveedores.html" class="nav-link">Proveedores</a></li>
-        <li class="nav-item"><a href="../insumos/insumos.html" class="nav-link">Insumos</a></li>
-        <li class="nav-item"><a href="../invetario/invetario.html" class="nav-link">Invetario</a></li>
-        <li class="nav-item"><a href="../usuarios/usuarios.html" class="nav-link">Usuarios</a></li>
-      </ul>
-    </header>
-  </div>
+  <?php require '../navBar.php'; ?>
 
   <div class="b-example-divider"><h1 style="margin-left: 15px;">Productos</h1></div>
   <div class="container-fluid " id="mainDiv">

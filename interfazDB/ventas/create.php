@@ -8,7 +8,7 @@ function createVenta($productosVenta, $tipoVenta, $usuarioID) {
     require_once 'read.php';
     $coneccion = coneccion();
 
-    $query = 'INSERT INTO ventas (totalVenta, tipoVenta, usuarioID)
+    $query = 'INSERT INTO ventas (totalDeVenta, tipoDeVenta, usuarioID)
               VALUES (?, ?, ?)';
 
     $stmt = mysqli_prepare($coneccion, $query);

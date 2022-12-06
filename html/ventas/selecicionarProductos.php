@@ -1,3 +1,38 @@
+<?php
+session_start();
+$mensaje = '';
+if( isset($_POST['productoID']) && isset($_POST['cantidad']) ) {
+  require_once '../../interfazDB/productos/read.php';
+  require '../../interfazDB/productos/update.php';
+  // *la cantidad seleccionada debe ser menor o igual al stock
+  $producto = readID($_POST['productoID']);
+  $producto = mysqli_fetch_array($producto);
+  $stock = $producto['stock'];
+  if($_POST['cantidad'] <= $stock) {
+      // *restar la cantidad seleccionada al stock
+      $stockRestante = $stock - $_POST['cantidad'];
+      updateStock($producto['productoID'], $stockRestante);
+
+      /* *agregar esta entrada a la informacion de la venta
+        guardar informacion de venta en $_SESSION, uno por tabla  */
+      
+      if( $ultimoProducto = end($_SESSION['productosVenta']) )
+          $numeroFila = $ultimoProducto['numeroFila'] +1;
+      else
+          $numeroFila = 1;
+
+      $productoVenta = array();
+      $productoVenta['numeroFila'] = $numeroFila;
+      $productoVenta['nombre'] = $producto['nombre'];
+      $productoVenta['cantidad'] = $_POST['cantidad'];
+      $productoVenta['unidadDeMedida'] = $producto['unidadDeMedida'];
+      $productoVenta['subtotal'] = $producto['precioDeVenta'] * $_POST['cantidad'];
+      $productoVenta['productoID'] = $_POST['productoID'];
+      array_push( $_SESSION['productosVenta'],  $productoVenta);
+  } else
+      $mensaje = '<h2>la cantidad seleccionada exede el stock</h2>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,21 +45,7 @@
 </head>
 <body>
 
-  <div class="container">
-    <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="../../Index.html" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="../ventas/ventas.html" class="nav-link">Ventas</a></li>
-        <li class="nav-item"><a href="../gastos/gastos.html" class="nav-link">Gastos</a></li>
-        <li class="nav-item"><a href="../prestamos/prestamos.html" class="nav-link">Prestamos</a></li>
-        <li class="nav-item"><a href="../productos/productos.php" class="nav-link">Productos</a></li>
-        <li class="nav-item"><a href="../invetario/invetario.html" class="nav-link">Invetario</a></li>
-        <li class="nav-item"><a href="../proveedores/proveedores.html" class="nav-link">Proveedores</a></li>
-        <li class="nav-item"><a href="../insumos/insumos.html" class="nav-link">Insumos</a></li>
-        <li class="nav-item"><a href="../usuarios/usuarios.html" class="nav-link">Usuarios</a></li>
-      </ul>
-    </header>
-  </div>
+<?php require '../navBar.php'; ?>
 
   <div class="b-example-divider"><h1 style="margin-left: 15px;">Productos</h1></div>
 
@@ -46,11 +67,11 @@
                     </thead>
                     <tbody>
                       <?php 
-                      include '../../interfazDB/productos/read.php';
+                      require_once '../../interfazDB/productos/read.php';
                       $datos = read();
                       while($registro = mysqli_fetch_array($datos)) {
                         echo '<tr>';
-                          echo '<td>' . $registro['folioDeVenta'] . '</td>';
+                          echo '<td>' . $registro['productoID'] . '</td>';
                           echo '<td>' . $registro['nombre']  . '</td>';
                           echo '<td>' . $registro['unidadDeMedida']  . '</td>';
                           echo '<td>' . $registro['precioDeVenta']  . '</td>';
@@ -66,12 +87,13 @@
                 
               </table>
             </div>
-        <form action="agregarProducto/agregarProducto.php" method="post">
+        <form  method="post">
             <div class="form-group">
                 <label for="ClienteInfo">Id del producto:</label>
-                <input class="form-control" type="number" name="productoID" id="CantidadTextbox"></input>
+                <input class="form-control" type="number" name="productoID" id="CantidadTextbox" required>
                 <label for="ClienteInfo">Cantidad en KG:</label>
-                <input class="form-control" type="number" name="cantidad" id="CantidadTextbox"></input>
+                <input class="form-control" type="number" step="0.010" name="cantidad" id="CantidadTextbox" required>
+                <?php echo $mensaje ?>
             </div>
             <div style="margin-top: 2rem; width: 50%;">
               <button type="submit" class="w-100 btn btn-secondary">Agregar</button>
