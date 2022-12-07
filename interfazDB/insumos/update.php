@@ -19,4 +19,21 @@ function update($insumoID, $valorCampos) {
     return $stmtExitoso;
 }
 
+function updateStockInsumos($insumoID, $nuevoStock) {
+    $base_dir = realpath(dirname(__FILE__) . '/..');
+    require_once  $base_dir . '/coneccion.php';
+    $coneccion = coneccion();
+
+    $query = 'UPDATE insumos SET stock = ? WHERE insumoID = ?';
+
+    $stmt = mysqli_prepare($coneccion, $query);
+
+    mysqli_stmt_bind_param( $stmt,'di', $nuevoStock, $insumoID );
+
+    $stmtExitoso = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($coneccion);
+    return $stmtExitoso;
+}
+
 ?>

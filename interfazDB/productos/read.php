@@ -15,25 +15,14 @@ function readID($ID) {
     $coneccion = coneccion();
 
     $query = 'SELECT * FROM productos where productoID = ?';
-
     $stmt = mysqli_prepare($coneccion, $query);
-
     $ID = htmlspecialchars(strip_tags($ID));
-
     mysqli_stmt_bind_param($stmt, 'i', $ID);
-
     mysqli_stmt_execute($stmt);
     $resultado = mysqli_stmt_get_result($stmt);
-    
-    $numeroRegistros = mysqli_num_rows($resultado);
-
     mysqli_stmt_close($stmt);
     mysqli_close($coneccion);
-
-    if($numeroRegistros > 0)
-        return $resultado;
-    else
-        return false;
+    return $resultado;
 }
 
 ?>

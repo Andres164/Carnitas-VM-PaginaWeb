@@ -50,10 +50,7 @@
             </div>
             <!-- Botones -->
             <div class="col-4" id="divBotones">
-                <a type="button" href="registrarProductos.html" class="w-100 btn btn-secondary">Registrar Producto</a><br>
-                <a type="button" href="#" class="w-100 btn btn-secondary">Eliminar registro</a><br>
-                <a type="button" href="modificarProductos.html" class="w-100 btn btn-secondary">Modificar Registro </a><br><br>
-                <button type="button"  class="w-100 btn btn-secondary">Refrescar tabla</button> <br>
+                <a type="button" href="registrarProductos.php" class="w-100 btn btn-secondary">Registrar Producto</a><br>
                 
             </div>
         </div>
